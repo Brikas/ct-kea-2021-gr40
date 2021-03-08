@@ -1,0 +1,2 @@
+-- Create views.
+-- Goes after create_tables.
