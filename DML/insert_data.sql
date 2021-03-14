@@ -23,6 +23,7 @@ VALUES
 (19, 'Prof. Elinor Wuckert II'),
 (20, 'Coralie Walker');
 
+
 INSERT INTO `Payment`
 (`Payment_ID`, `Date`, `Amount`, `User_ID`)
 VALUES
@@ -33,6 +34,7 @@ VALUES
 (5, '1992-04-15 18:26:02', '10.00', 18),
 (6, '2021-01-24 20:28:31', '10.00', 6);
 
+
 INSERT INTO `Category`
 (`Category_ID`, `Name`)
 VALUES
@@ -41,6 +43,7 @@ VALUES
 (3, 'Social Media'),
 (4, 'Accounting'),
 (5, 'Business');
+
 
 INSERT INTO `Course`
 (`Course_ID`, `Length`, `Name`, `Difficulty`, `Category_ID`)
@@ -66,6 +69,7 @@ VALUES
 (19, '09:40:14', 'Negotiating as a freelancer', 0, 5),
 (20, '04:31:31', 'Finding clients 101', 5, 5);
 
+
 INSERT INTO `Curriculum`
 (`Curriculum_ID`, `Name`)
 VALUES
@@ -74,6 +78,7 @@ VALUES
 (3, 'Online presence management'),
 (4, 'Full desktop application course'),
 (5, 'How to be an Influenza');
+
 
 INSERT INTO `Curriculum_Course`
 (`Curriculum_ID`, `Course_ID`)
@@ -94,10 +99,12 @@ VALUES
 (5, 12),
 (5, 4);
 
+
 INSERT INTO `Quiz`
 (`Quiz_ID`, `Name`, `Introduction`)
 VALUES
 (1, 'Preference', 'Hey! Let''s find out which course is right for you with this quiz!');
+
 
 INSERT INTO `Question`
 (`Question_ID`, `Text`, `Quiz_ID`)
@@ -106,6 +113,7 @@ VALUES
 (2, 'Which would you prefer to do in your free time?', 1),
 (3, 'Choose what you like most', 1),
 (4, 'Choose what you like most', 1);
+
 
 INSERT INTO `Answer`
 (`Answer_ID`, `Text`, `Points`, `Category_ID`, `Question_ID`)
@@ -150,6 +158,7 @@ VALUES
 (20,11,6),
 (20,12,1);
 
+
 INSERT INTO `User_answer`
 VALUES
 (13,1),
@@ -172,6 +181,7 @@ VALUES
 (11,10),
 (11,11),
 (12,1);
+
 
 INSERT INTO `Reason`
 VALUES
