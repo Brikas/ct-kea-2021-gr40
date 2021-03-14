@@ -14,11 +14,38 @@
 -- ██║░░░░░╚██████╔╝██║░╚███║╚█████╔╝░░░██║░░░██║╚█████╔╝██║░╚███║██║░░██║███████╗██║░░░██║░░░░░░██║░░░
 -- ╚═╝░░░░░░╚═════╝░╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚══════╝╚═╝░░░╚═╝░░░░░░╚═╝░░░
 
+
 -- Scenario: 
 -- Open course page to see all courses offered
 --
 -- Code:
 SELECT * FROM v_Course
+
+
+-- Scenario: 
+-- Show suggested courses to user with Id 16 based on their quiz result so far
+--
+-- Code:
+SELECT * FROM Course
+WHERE Course.Category_ID IN
+(
+	SELECT Category FROM
+	(
+		SELECT Category, MAX(TotalPoints) FROM
+		(
+			SELECT User.Name, Category.Category_ID AS 'Category' , SUM(Answer.Points) as TotalPoints
+			FROM User
+			INNER JOIN User_answer ON User.User_ID = User_answer.User_ID
+			INNER JOIN Answer ON Answer.Answer_ID = User_answer.Answer_ID
+			INNER JOIN Category ON Category.Category_ID = Answer.Category_ID
+
+			WHERE User.User_ID = 16
+			GROUP BY Category.Name
+		) T
+	) T
+)
+
+
 
 
 -- ██████╗░███████╗░██████╗░██████╗░███████╗░██████╗░██████╗██╗░█████╗░███╗░░██╗
