@@ -23,6 +23,27 @@ SELECT * FROM v_Course
 
 
 -- Scenario: 
+-- Recomend the user higher difficulty courses from the same category (used after the user finishes a course)
+--
+-- Code:
+SELECT * FROM Course
+WHERE
+Category_ID IN (
+	SELECT Category_ID FROM Course
+	WHERE Course_ID = 6
+)
+AND
+Difficulty BETWEEN (
+	SELECT Difficulty+1 FROM Course
+	WHERE Course_ID = 6
+) AND (
+	SELECT Difficulty+4 FROM Course
+	WHERE Course_ID = 6
+)
+ORDER BY Difficulty ASC
+
+
+-- Scenario: 
 -- Show suggested courses to user with Id 16 based on their quiz result so far
 --
 -- Code:
@@ -43,8 +64,7 @@ WHERE Course.Category_ID IN
 			GROUP BY Category.Name
 		) T
 	) T
-)
-
+) AND Difficulty <= 3
 
 
 
