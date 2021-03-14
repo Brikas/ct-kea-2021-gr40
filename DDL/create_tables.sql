@@ -1,9 +1,9 @@
 -- Define the tables for the database.
 -- Goes first.
 
--- FIx indexes
--- make comments
-
+-- Remove foreign key constraints
+-- Otherwise we can't delete tables unorderly 
+-- Bring back foregin key constraint checks
 SET FOREIGN_KEY_CHECKS = 0;
 drop table if exists User;
 drop table if exists Category;
@@ -15,12 +15,11 @@ drop table if exists Enrollment;
 drop table if exists Quiz;
 drop table if exists Question;
 drop table if exists Answer;
-
 drop table if exists User_answer;
 drop table if exists Reason;
 SET FOREIGN_KEY_CHECKS = 1;
 
-
+-- Create all tables. Set primary and foreign keys and indexes
 CREATE TABLE `User` (
   `User_ID` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
@@ -57,7 +56,7 @@ CREATE TABLE `Curriculum` (
   `Name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`Curriculum_ID`));
   
-  CREATE TABLE `Course` (
+CREATE TABLE `Course` (
   `Course_ID` INT NOT NULL,
   `Length` TIME NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
@@ -138,6 +137,7 @@ CREATE TABLE `User_answer` (
     FOREIGN KEY (`Answer_ID`)
     REFERENCES `Answer` (`Answer_ID`));
 
+-- Update the database and table character set encoding to allow for emojis 🔥🔥🔥
 ALTER DATABASE sql4396600 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE sql4396600.Answer CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE sql4396600.Reason CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
